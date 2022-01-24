@@ -1059,3 +1059,4 @@
 233.00
 204.00
 171.00
+Pomiar: EKG1.txt Czas badania: 13.51 sekund

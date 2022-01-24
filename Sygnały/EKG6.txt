@@ -1750,3 +1750,4 @@
 333.00
 290.00
 321.00
+Pomiar: EKG6.txt Czas badania: 22.31 sekund (Podczas badania odpięto elektrodę! Sygnał może być niepełny)

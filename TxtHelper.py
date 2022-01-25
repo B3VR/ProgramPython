@@ -17,7 +17,7 @@ def readSignalFromTxt(path):
     measurmentTime = header[4]
     
     if len(header) > 6:
-        warning = "(Podczas badania odpięto elektrodę! sygnał może być niepełny)"
+        warning = "(Podczas badania odpięto elektrodę! Sygnał może być niepełny)"
     else:
         warning = ""
 

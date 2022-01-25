@@ -1,20 +1,21 @@
 from tkinter import *
 from tkinter import filedialog
-import tkinter
-import numpy as np 
+import numpy as np
 import TxtHelper
 
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 from matplotlib.figure import Figure 
  
 # Metody
-def wczytaj_sygnal(): 
+def wczytajSygnal(): 
     
     path = filedialog.askopenfilename(initialdir="Sygnały", title="Wybierz plik")
     signal = TxtHelper.readSignalFromTxt(path)
     time = np.linspace(0, signal.measurmentTime, num= len(signal.samples))
 
-    warning.set(signal.warning)
+    labelWarning.config(text=signal.warning)
+    labelName.config(text=str(nazwaBadania + signal.name))
+    labelTime.config(text=czasBadania + str(signal.measurmentTime) + " sekund")
 
     ax.clear()
     ax.set_xlabel("Czas [s]") 
@@ -25,14 +26,22 @@ def wczytaj_sygnal():
 
 # Gui
 root = Tk() 
+root.title("Przeglądarka sygnału EKG")
 root.config(background='white') 
-root.geometry("1300x600") 
+root.geometry("1300x630") 
      
-warning = tkinter.StringVar()
-lab = Label(root, text=warning, bg = 'white').pack()
+labelWarning = Label(root, text="", font='Helvetica 12 bold', bg = 'white', fg="red" )
+labelWarning.pack()
+
+nazwaBadania = "Nazwa badania: "
+labelName = Label(root, bg = 'white', font='Helvetica 12 bold', text=nazwaBadania, pady=3)
+labelName.pack()
+
+czasBadania = "Czas badania: "
+labelTime = Label(root, bg = 'white', font='Helvetica 12 bold',text=czasBadania)
+labelTime.pack()
 
 fig = Figure() 
-     
 ax = fig.add_subplot(111) 
 ax.set_xlabel("Czas [s]") 
 ax.set_ylabel("Amplituda sygnału") 
@@ -46,8 +55,8 @@ toolBar.update()
 canvas.get_tk_widget().pack(side="top",fill='both', expand=True)
 
   
-b = Button(root, text="Wczytaj sygnal z pliku", command=wczytaj_sygnal, bg="white")
-b.pack(side="left")
+btnWczytaj = Button(root, text="Wczytaj sygnał z pliku", command=wczytajSygnal, bg="white smoke", font=8, height=5, width=25)
+btnWczytaj.pack(side="left")
      
 root.mainloop() 
 

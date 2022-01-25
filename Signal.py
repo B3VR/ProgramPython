@@ -1,4 +1,3 @@
-
 class Signal:
     def __init__(self, name, measurmnetTime, warning, samples):
         self.name = name
